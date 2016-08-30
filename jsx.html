@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>jsx</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		var names = ['jack','alice','meimei'];
+		//创建组件（定义VirtualDOM）
+		var Component = React.createClass({
+			//创建VirtualDOM
+			render:function(){
+				return (
+					<div>
+						{
+							names.map(function(name){
+								return <div>Hello,{name}!</div>
+							});
+						}
+					</div>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<Component/>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>
