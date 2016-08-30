@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>改变初始状态</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		//创建组件（定义VirtualDOM）
+		var FirstComponent = React.createClass({
+			getInitialState:function(){
+				return {
+					color:'green'
+				}
+			},
+			//进入状态之前调用
+			componentWillMount:function(){
+				var _self = this;
+				setTimeout(function(){
+					_self.setState({color:'yellow'});
+				},1000);
+			},
+			//进入状态之后调用
+			componentDidMount:function(){
+				var _self = this;
+				setTimeout(function(){
+					_self.setState({color:'red'});
+				},3000);
+			},
+			//创建VirtualDOM
+			render:function(){
+				return (
+					<h1 style={{color:this.state.color}}>{this.props.title}</h1>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<FirstComponent title="Hello World!"/>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>

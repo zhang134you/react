@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>创建组件</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		//创建组件（定义VirtualDOM）
+		var FirstComponent = React.createClass({
+			render:function(){
+				return (
+					<h1>Hello World</h1>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<FirstComponent/>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>
