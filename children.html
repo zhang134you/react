@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>children</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		//创建组件（定义VirtualDOM）
+		var Component = React.createClass({
+			//创建VirtualDOM
+			render:function(){
+				return (
+					<ol>
+						{
+							//采用React.Children.map遍历是为了确保this.props.children不管是undefined,object,还是array都不会出错
+							React.Children.map(this.props.children,function(child){
+								return <li>{child}</li>;
+							})
+						}
+					</ol>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<Component>
+				<span>This is First!</span>
+				<span>This is Second!</span>
+				<span>This is Three!</span>
+				<span>This is Four!</span>
+				<div>This is a DIV<span>This is a SPAN</span></div>
+			</Component>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>
