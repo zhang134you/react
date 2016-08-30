@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>propTypes</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		//propTypes:可以定义元素的某个属性必须存在，定义其数据类型
+		//创建组件（定义VirtualDOM）
+		var Component = React.createClass({
+			propTypes:{
+				title:React.PropTypes.string.isRequired//必须是一个字符串且必须存在
+			},
+			//创建VirtualDOM
+			render:function(){
+				return (
+					<h1>{this.props.title}</h1>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<Component title="Hello world"/>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>
