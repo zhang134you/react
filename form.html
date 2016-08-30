@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='utf8'>
+<head>
+	<meta charset="utf-8">
+	<title>form</title>
+	<script type="text/javascript" src="./build/react.js"></script>
+	<script type="text/javascript" src="./build/react-dom.js"></script>
+	<script type="text/javascript" src="./build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="react"></div>
+	<script type="text/jsx">
+		//创建组件（定义VirtualDOM）
+		var Input = React.createClass({
+			getInitialState:function(){
+				return {
+					value:'请输入内容',
+				}
+			},
+			change:function(e){
+				e.stopPropagation();//防止冒泡
+				this.setState({value:e.target.value});
+			},
+			click:function(e){
+				e.stopPropagation();
+				this.refs.mark.innerHTML = this.refs.content.innerHTML;
+			},
+			//创建VirtualDOM
+			render:function(){
+				return (
+					<div>
+						<input type="text" value={this.state.value} onChange={this.change}/>
+						<p ref="content">{this.state.value}</p>
+						<input type="submit" name="submit" value="提交" onClick={this.click}/>
+						<div>你输入的内容为：<div ref="mark"></div></div>
+					</div>
+				)
+			}
+		})
+		//渲染组件（创建DOM结构）
+		ReactDOM.render(
+			<Input/>,
+			document.getElementById('react')
+		);
+	</script>
+</body>
+</html>
