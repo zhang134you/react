@@ -12,12 +12,34 @@
 	<script type="text/jsx">
 		//创建组件（定义VirtualDOM）
 		var FirstComponent = React.createClass({
+			//初始状态
+			getInitialState:function(){
+				return {
+					name:'jack',
+					age:'30'
+				}
+			},
+			//定义绑定函数
+			handleClick:function(e){
+				var name = '';
+				if(this.state.name == 'jack') {
+					name = 'alice';
+				} else {
+					name = 'jack';
+				}
+				this.setState({name:name});//设置初始状态
+			},
+			handleChange:function(e){
+				this.setState({age:28});
+			},
 			//创建VirtualDOM
 			render:function(){
 				return (
 					<div>
-						<h1 onClick="">{this.props.title}</h1>
-						<span>测试事件</span>
+						<button onClick={this.handleChange}>点击测试</button>
+						<h1 onClick={this.handleClick}>{this.props.title}</h1>
+						<h2>{this.state.name}</h2>
+						<h3>{this.state.age}</h3>
 					</div>
 				)
 			}
